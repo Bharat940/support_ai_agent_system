@@ -49,6 +49,3 @@ A fullstack AI-powered customer support system with a multi-agent architecture. 
     pnpm dev
     ```
     This will start both frontend (localhost:5173) and backend (localhost:3000).
-
-## Deployment
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions on Vercel and Railway.
