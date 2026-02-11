@@ -8,7 +8,7 @@ const billingService = new BillingService();
 export async function billingAgent(
     message: string,
     conversationContext?: any[],
-    _conversationId?: string // Prefix with underscore to mark as intentionally unused
+    _conversationId?: string
 ) {
     const result = streamText({
         model,

@@ -20,7 +20,6 @@ export const useChat = (conversationId?: string) => {
         onFinish: ({ message }) => {
             console.log('Finished stream', message);
 
-            // Extract agent from metadata
             if (message.metadata && typeof message.metadata === 'object') {
                 const metadata = message.metadata as Record<string, unknown>;
                 if ('agent' in metadata && typeof metadata.agent === 'string') {

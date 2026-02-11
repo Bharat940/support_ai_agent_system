@@ -9,7 +9,6 @@ import { useChat } from '../hooks/useChat';
 import { Button } from '../components/ui/Button';
 import { client } from '../lib/client';
 
-// Define types for Hono RPC responses since inference might be generic
 interface Message {
     id: string;
     role: 'user' | 'assistant';
@@ -30,7 +29,6 @@ export const ChatLayout = () => {
     const [conversations, setConversations] = useState<Conversation[]>([]);
     const [isLoadingHistory, setIsLoadingHistory] = useState(false);
 
-    // Initialize chat hook
     const {
         messages,
         sendMessage,
@@ -40,7 +38,6 @@ export const ChatLayout = () => {
         isLoading
     } = useChat(conversationId);
 
-    // Fetch conversation history for Sidebar
     useEffect(() => {
         const userId = "test-user-1";
         setIsLoadingHistory(true);
@@ -64,7 +61,6 @@ export const ChatLayout = () => {
         loadConversations();
     }, [conversationId]);
 
-    // Load initial messages for active conversation
     useEffect(() => {
         if (conversationId) {
             // @ts-ignore - AppType inference is complex in this monorepo setup
@@ -73,12 +69,10 @@ export const ChatLayout = () => {
                 .then((rawData: any) => {
                     const data = rawData as unknown as Conversation;
                     if (data && data.messages) {
-                        // Convert to UIMessage format with parts
                         const uiMessages = data.messages.map((m: any) => ({
                             id: m.id,
                             role: m.role,
                             parts: [{ type: 'text', text: m.content } as const],
-                            // AI SDK UI renders timestamps from metadata (if provided)
                             metadata: {
                                 createdAt: m.createdAt
                                     ? new Date(m.createdAt).getTime()

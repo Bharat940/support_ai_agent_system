@@ -16,14 +16,13 @@ app.get('/', (c) => {
   return c.text('Hello Hono!')
 })
 
-// Rate Limiting Middleware (Simple In-Memory)
 const rateLimit = new Map<string, { count: number; lastReset: number }>();
 
 app.use('*', async (c, next) => {
   const ip = c.req.header('x-forwarded-for') || 'unknown';
   const now = Date.now();
-  const windowMs = 60 * 1000; // 1 minute
-  const maxRequests = 100; // 100 requests per minute
+  const windowMs = 60 * 1000;
+  const maxRequests = 100;
 
   const record = rateLimit.get(ip) || { count: 0, lastReset: now };
 
@@ -42,7 +41,6 @@ app.use('*', async (c, next) => {
   await next();
 });
 
-// Global Error Handling Middleware
 app.onError((err, c) => {
   console.error('Global Error Catch:', err);
   return c.json({

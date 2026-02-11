@@ -24,7 +24,6 @@ router.post("/messages", (c) =>
     controller.addMessage(c)
 );
 
-// New endpoint for processing messages with AI agents
 router.post("/process", (c) =>
     controller.processMessage(c)
 );

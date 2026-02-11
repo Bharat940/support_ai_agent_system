@@ -93,16 +93,12 @@ export const ChatMessage = ({ message, agentType = 'support' }: ChatMessageProps
                                         );
 
                                     case 'tool-invocation':
-                                    // Handle legacy tool-invocation if present, but primarily check for specific tool types
                                     case 'tool-call':
                                     case 'tool-result':
-                                        // Fallthrough for known tool types or generic handling if needed
                                         return null;
 
                                     default:
-                                        // Handle dynamic tool parts or specific named tools
                                         if (part.type.startsWith('tool-')) {
-                                            // Cast to any to access dynamic properties that might not exist on the base union type
                                             const p = part as any;
                                             const toolName = p.toolName || part.type.replace('tool-', '');
                                             const state = p.state;
