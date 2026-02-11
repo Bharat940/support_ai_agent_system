@@ -1,0 +1,7 @@
+# Since root .gitignore covers most things, we just need package specific ignores
+
+# Build output
+dist
+
+# Environment
+.env

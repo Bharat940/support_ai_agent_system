@@ -1,0 +1,9 @@
+# Since root .gitignore covers most things, we just need package specific ignores
+
+# Prisma
+/generated/prisma
+*.sqlite
+*.sqlite-journal
+
+# Environment
+.env
